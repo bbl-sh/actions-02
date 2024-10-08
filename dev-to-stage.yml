@@ -1,0 +1,21 @@
+name: Dev to Stage Promotion
+
+on:
+  pull_request:
+    branches:
+      - stage
+
+jobs:
+  promote-to-stage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Ensure merge is from dev to stage
+        if: github.event.pull_request.base.ref == 'stage' && github.event.pull_request.head.ref == 'dev'
+        run: echo "Merging dev into stage"
+
+      - name: Reject invalid PRs
+        if: github.event.pull_request.base.ref == 'stage' && github.event.pull_request.head.ref != 'dev'
+        run: exit 1

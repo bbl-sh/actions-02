@@ -1,0 +1,20 @@
+Clone the remote repo to your local repo
+Then use this command to change remote-url, since it requires ssh to push
+
+git remote set-url origin git@githu......
+
+
+# Create the dev branch
+git push origin dev
+
+# Create the stage branch from the dev branch
+git checkout -b stage dev
+git push origin stage
+
+
+# Create the prod branch from the stage branch
+git checkout -b prod stage
+git push origin prod
+
+
+git checkout main

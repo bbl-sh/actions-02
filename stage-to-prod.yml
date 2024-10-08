@@ -1,0 +1,21 @@
+name: Stage to Prod Promotion
+
+on:
+  pull_request:
+    branches:
+      - prod
+
+jobs:
+  promote-to-prod:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Ensure merge is from stage to prod
+        if: github.event.pull_request.base.ref == 'prod' && github.event.pull_request.head.ref == 'stage'
+        run: echo "Merging stage into prod"
+
+      - name: Reject invalid PRs
+        if: github.event.pull_request.base.ref == 'prod' && github.event.pull_request.head.ref != 'stage'
+        run: exit 1

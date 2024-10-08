@@ -1,0 +1,18 @@
+dev branch:
+1. Protect the dev branch.
+2. Require pull requests (PR) before merging.
+3. Set up required status checks before merging (like passing builds or tests).
+
+
+stage and prod branches:
+1. Protect stage and prod branches.
+2. Block direct merges (no pushing directly).
+3. Only allow merging from dev to stage and from stage to prod.
+4. Require at least one review on pull requests.
+
+
+after this is done then u have to do this
+Go to Settings > Branches
+Add protection rules for dev, stage, and prod branches:
+Require pull request reviews before merging.
+Require status checks to pass before merging.
